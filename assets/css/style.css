@@ -266,9 +266,20 @@ li {
     box-shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
 
+.figure-wide {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1400px, 95vw);
+}
+
 .figure-wide img {
     width: 100%;
-    max-width: 100%;
+    max-width: none;
+}
+
+.figure-wide .caption {
+    max-width: 1000px;
 }
 
 .caption {
@@ -411,6 +422,12 @@ footer a:hover {
     .table-container {
         margin: 1.5rem -1rem;
         border-radius: 0;
+    }
+
+    .figure-wide {
+        width: 100%;
+        left: 0;
+        transform: none;
     }
 }
 
