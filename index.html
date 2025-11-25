@@ -3,80 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GSW: Structured Episodic Memory for Next-Gen RAG</title>
+    <title>Beyond Fact Retrieval: Episodic Memory for RAG with GSW</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <article>
         <header>
-            <h1>Generative Semantic Workspaces</h1>
-            <h2>Structured Episodic Memory for Next-Gen RAG</h2>
+            <h1>Beyond Fact Retrieval:<br>Episodic Memory for RAG with<br>Generative Semantic Workspaces</h1>
+
+            <div class="authors">
+                <p><a href="#">Shreyas Rajesh</a>, <a href="#">Pavan Holur</a>, <a href="#">Chenda Duan</a>, <a href="#">David Chong</a>, <a href="#">Vwani Roychowdhury</a></p>
+                <p class="affiliation">University of California, Los Angeles</p>
+            </div>
 
             <div class="venue">
                 <p><strong>AAAI 2026</strong></p>
             </div>
 
             <div class="links">
-                <a href="https://arxiv.org/abs/XXXX.XXXXX" class="btn">Paper (Coming Soon)</a>
-                <a href="#bibtex" class="btn">BibTeX</a>
+                <a href="https://arxiv.org/abs/2511.07587" class="btn" target="_blank">📄 Paper</a>
+                <a href="#code" class="btn btn-secondary">💻 Code (Coming Soon)</a>
+                <a href="#citation" class="btn btn-secondary">📚 Citation</a>
             </div>
         </header>
 
         <section id="abstract">
-            <h3>Abstract</h3>
-            <p>
-                Large Language Models (LLMs) face fundamental challenges in long-context reasoning: many documents exceed their finite context windows,
-                while performance on texts that do fit degrades with sequence length. Current solutions, which have evolved from retrieval using semantic
-                embeddings to more sophisticated structured knowledge graph representations, fail to build the space-time-anchored narrative representations
-                required for tracking entities through episodic events.
-            </p>
-            <p>
-                We propose the <strong>Generative Semantic Workspace (GSW)</strong>, a neuro-inspired generative memory framework that builds structured,
-                interpretable representations of evolving situations, enabling LLMs to reason over evolving roles, actions, and spatio-temporal contexts.
-                Our framework comprises an <strong>Operator</strong>, which maps incoming observations to intermediate semantic structures, and a
-                <strong>Reconciler</strong>, which integrates these into a persistent workspace that enforces temporal, spatial, and logical coherence.
+            <h3>TL;DR</h3>
+            <p class="tldr">
+                <strong>GSW achieves state-of-the-art episodic memory performance</strong> with an F1-score of <strong>0.85</strong> on EpBench,
+                outperforming structured RAG baselines by up to <strong>20% in recall</strong> while reducing context tokens by <strong>51%</strong>.
             </p>
         </section>
 
-        <section id="architecture">
-            <h3>Framework Overview</h3>
+        <section id="motivation">
+            <h3>Motivation</h3>
+            <p>
+                Large Language Models face fundamental challenges with long-context reasoning. Current RAG solutions—from semantic embeddings to
+                knowledge graphs—are designed for <strong>fact retrieval</strong> but fail to build the <strong>space-time-anchored narrative
+                representations</strong> needed for tracking entities through evolving situations.
+            </p>
+            <p>
+                <strong>The vast majority of texts are not lists of facts but narratives of evolving real-world situations.</strong>
+                Crime reports, political briefings, corporate filings, and news coverage all describe <em>actors</em> that adopt <em>roles</em>
+                and transition through <em>states</em> while interacting across <em>space and time</em>.
+            </p>
+        </section>
+
+        <section id="approach">
+            <h3>Our Approach: Generative Semantic Workspaces (GSW)</h3>
+
             <div class="figure">
-                <img src="figures/main.png" alt="GSW Architecture" style="width: 100%; max-width: 900px;">
+                <img src="figures/motivation.png" alt="Brain-inspired GSW architecture">
                 <p class="caption">
-                    <strong>Figure 1:</strong> The GSW framework mirrors hippocampal-neocortical structure. The Operator (inspired by neocortex)
-                    extracts semantic roles, states, and verb phrases. The Reconciler (inspired by hippocampus) integrates these into a coherent
-                    spatio-temporal workspace.
+                    <strong>Brain-Inspired Design:</strong> GSW mirrors the neocortical-hippocampal architecture. The <em>Operator</em>
+                    (neocortex) extracts semantic roles and states. The <em>Reconciler</em> (hippocampus) binds them into coherent
+                    spatiotemporal sequences.
+                </p>
+            </div>
+
+            <p>
+                GSW is a <strong>neuro-inspired generative memory framework</strong> that builds structured, interpretable representations
+                of evolving situations. It comprises two core components:
+            </p>
+
+            <div class="component-grid">
+                <div class="component">
+                    <h4>🔍 Operator</h4>
+                    <p>Maps incoming text to intermediate semantic structures:</p>
+                    <ul>
+                        <li><strong>Actors & Entities:</strong> People, places, objects, times</li>
+                        <li><strong>Roles:</strong> Situation-relevant descriptors</li>
+                        <li><strong>States:</strong> Evolving conditions of actors</li>
+                        <li><strong>Verbs & Valences:</strong> Actions and their arguments</li>
+                        <li><strong>Spatio-Temporal Links:</strong> Shared locations/times</li>
+                        <li><strong>Forward-Falling Questions:</strong> Predicted developments</li>
+                    </ul>
+                </div>
+
+                <div class="component">
+                    <h4>🔄 Reconciler</h4>
+                    <p>Integrates semantic structures into a persistent workspace:</p>
+                    <ul>
+                        <li><strong>Entity Disambiguation:</strong> Merges entity references</li>
+                        <li><strong>State Evolution Tracking:</strong> Maintains temporal history</li>
+                        <li><strong>Spatio-Temporal Coherence:</strong> Enforces consistency</li>
+                        <li><strong>Question Resolution:</strong> Answers predictive queries</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="figure">
+                <img src="figures/overview3.png" alt="GSW Pipeline">
+                <p class="caption">
+                    <strong>End-to-End Pipeline:</strong> Documents are chunked and processed by the Operator to create local semantic graphs.
+                    The Reconciler integrates these into a unified global memory. At query time, entity-specific summaries are retrieved,
+                    re-ranked, and passed to an LLM.
                 </p>
             </div>
         </section>
 
         <section id="results">
-            <h3>Key Results</h3>
+            <h3>Results</h3>
 
             <div class="results-highlight">
-                <div class="metric">
-                    <div class="number">0.850</div>
-                    <div class="label">F1-Score on EpBench</div>
+                <div class="metric-card">
+                    <div class="metric-value">0.850</div>
+                    <div class="metric-label">F1-Score</div>
+                    <div class="metric-desc">EpBench-200</div>
                 </div>
-                <div class="metric">
-                    <div class="number">20%</div>
-                    <div class="label">Improvement in Recall</div>
+                <div class="metric-card">
+                    <div class="metric-value">0.773</div>
+                    <div class="metric-label">F1-Score</div>
+                    <div class="metric-desc">EpBench-2000 (10x scale)</div>
                 </div>
-                <div class="metric">
-                    <div class="number">51%</div>
-                    <div class="label">Token Reduction</div>
+                <div class="metric-card">
+                    <div class="metric-value">+20%</div>
+                    <div class="metric-label">Recall</div>
+                    <div class="metric-desc">vs. HippoRAG2</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">51%</div>
+                    <div class="metric-label">Token Reduction</div>
+                    <div class="metric-desc">vs. GraphRAG</div>
                 </div>
             </div>
 
-            <p>
-                On the Episodic Memory Benchmark (EpBench), GSW achieves state-of-the-art performance with an F1-score of <strong>0.85</strong>,
-                outperforming strong structured RAG baselines by up to <strong>20% in recall</strong> on the most complex queries (6+ cues).
-                Furthermore, GSW reduces query-time context tokens by <strong>51%</strong> compared to the next most token-efficient baseline.
-            </p>
-
+            <h4>Performance on EpBench-200 (F1-Score by Query Complexity)</h4>
             <div class="table-container">
                 <table>
-                    <caption><strong>Table 1:</strong> Performance on EpBench (200 chapters) by query complexity</caption>
                     <thead>
                         <tr>
                             <th>Method</th>
@@ -89,7 +143,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr class="highlight-row">
                             <td><strong>GSW (Ours)</strong></td>
                             <td><strong>0.978</strong></td>
                             <td>0.745</td>
@@ -126,6 +180,15 @@
                             <td>0.714</td>
                         </tr>
                         <tr>
+                            <td>LightRAG</td>
+                            <td>0.944</td>
+                            <td>0.593</td>
+                            <td>0.587</td>
+                            <td>0.578</td>
+                            <td>0.560</td>
+                            <td>0.677</td>
+                        </tr>
+                        <tr>
                             <td>Vanilla LLM</td>
                             <td>0.883</td>
                             <td>0.709</td>
@@ -137,59 +200,19 @@
                     </tbody>
                 </table>
             </div>
-        </section>
 
-        <section id="how-it-works">
-            <h3>How It Works</h3>
-
-            <div class="figure">
-                <img src="figures/overview3.png" alt="GSW QA Pipeline" style="width: 100%; max-width: 900px;">
-                <p class="caption">
-                    <strong>Figure 2:</strong> End-to-end episodic memory creation and question answering. Documents are processed by the Operator
-                    to generate local semantic structures, which the Reconciler integrates into a unified global memory. During QA, relevant portions
-                    are retrieved, reconstructed into episodic summaries, and passed to an LLM.
-                </p>
-            </div>
-
-            <h4>The Operator: Local Semantic Extraction</h4>
-            <p>
-                The Operator processes text chunks and extracts structured semantic elements:
-            </p>
-            <ul>
-                <li><strong>Actors & Entities:</strong> People, places, objects, temporal markers</li>
-                <li><strong>Roles:</strong> Situation-relevant descriptors (e.g., "Suspect", "Law Enforcement Officer")</li>
-                <li><strong>States:</strong> Conditions that characterize actors (e.g., "apprehended", "released on bail")</li>
-                <li><strong>Verb Phrases & Valences:</strong> Actions and their semantic arguments (who, what, where, when, why, how)</li>
-                <li><strong>Spatio-Temporal Links:</strong> Shared locations and times that couple entities</li>
-                <li><strong>Forward-Falling Questions:</strong> Predictive queries about future developments</li>
-            </ul>
-
-            <h4>The Reconciler: Global Integration</h4>
-            <p>
-                The Reconciler integrates local operator outputs into a coherent global workspace:
-            </p>
-            <ul>
-                <li><strong>Entity Disambiguation:</strong> Merges references to the same entity across chunks</li>
-                <li><strong>State Evolution Tracking:</strong> Maintains temporal history of role and state changes</li>
-                <li><strong>Spatio-Temporal Coherence:</strong> Enforces consistency in location and time information</li>
-                <li><strong>Question Resolution:</strong> Answers forward-falling questions as new information arrives</li>
-            </ul>
-        </section>
-
-        <section id="efficiency">
-            <h3>Token Efficiency</h3>
+            <h4>Token Efficiency</h4>
             <div class="table-container">
                 <table>
-                    <caption><strong>Table 2:</strong> Average context tokens per query on EpBench</caption>
                     <thead>
                         <tr>
                             <th>Method</th>
-                            <th>Avg. Tokens</th>
-                            <th>Avg. Cost</th>
+                            <th>Avg. Tokens/Query</th>
+                            <th>Avg. Cost/Query</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr class="highlight-row">
                             <td><strong>GSW (Ours)</strong></td>
                             <td><strong>~3,587</strong></td>
                             <td><strong>~$0.0090</strong></td>
@@ -205,9 +228,14 @@
                             <td>~$0.0219</td>
                         </tr>
                         <tr>
-                            <td>HippoRAG</td>
+                            <td>HippoRAG2</td>
                             <td>~8,771</td>
                             <td>~$0.0219</td>
+                        </tr>
+                        <tr>
+                            <td>LightRAG</td>
+                            <td>~40,476</td>
+                            <td>~$0.1012</td>
                         </tr>
                         <tr>
                             <td>Vanilla LLM</td>
@@ -217,20 +245,42 @@
                     </tbody>
                 </table>
             </div>
+
+            <p>
+                <strong>Key Insight:</strong> GSW's entity-specific summaries provide targeted, query-relevant information—reducing
+                hallucinations and drastically cutting inference costs.
+            </p>
         </section>
 
-        <section id="bibtex">
+        <section id="code">
+            <h3>Code & Reproducibility</h3>
+            <p>
+                Implementation coming soon. The code will include:
+            </p>
+            <ul>
+                <li>Full GSW framework (Operator + Reconciler)</li>
+                <li>EpBench evaluation scripts</li>
+                <li>Baseline comparisons</li>
+                <li>Example usage and documentation</li>
+            </ul>
+        </section>
+
+        <section id="citation">
             <h3>Citation</h3>
-            <pre><code>@inproceedings{gsw2026,
-  title={Generative Semantic Workspaces: Structured Episodic Memory for Next-Gen RAG},
-  author={Anonymous},
-  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
-  year={2026}
+            <p>If you find this work useful, please cite:</p>
+            <pre><code>@misc{rajesh2025factretrievalepisodicmemory,
+  title={Beyond Fact Retrieval: Episodic Memory for RAG with Generative Semantic Workspaces},
+  author={Shreyas Rajesh and Pavan Holur and Chenda Duan and David Chong and Vwani Roychowdhury},
+  year={2025},
+  eprint={2511.07587},
+  archivePrefix={arXiv},
+  primaryClass={cs.AI},
+  url={https://arxiv.org/abs/2511.07587}
 }</code></pre>
         </section>
 
         <footer>
-            <p>Built with ❤️ for episodic memory research</p>
+            <p>© 2025 UCLA | <a href="https://arxiv.org/abs/2511.07587" target="_blank">ArXiv</a> | Code (Coming Soon)</p>
         </footer>
     </article>
 </body>
