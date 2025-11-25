@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSW: Structured Episodic Memory for Next-Gen RAG</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <article>
+        <header>
+            <h1>Generative Semantic Workspaces</h1>
+            <h2>Structured Episodic Memory for Next-Gen RAG</h2>
+
+            <div class="venue">
+                <p><strong>AAAI 2026</strong></p>
+            </div>
+
+            <div class="links">
+                <a href="https://arxiv.org/abs/XXXX.XXXXX" class="btn">Paper (Coming Soon)</a>
+                <a href="#bibtex" class="btn">BibTeX</a>
+            </div>
+        </header>
+
+        <section id="abstract">
+            <h3>Abstract</h3>
+            <p>
+                Large Language Models (LLMs) face fundamental challenges in long-context reasoning: many documents exceed their finite context windows,
+                while performance on texts that do fit degrades with sequence length. Current solutions, which have evolved from retrieval using semantic
+                embeddings to more sophisticated structured knowledge graph representations, fail to build the space-time-anchored narrative representations
+                required for tracking entities through episodic events.
+            </p>
+            <p>
+                We propose the <strong>Generative Semantic Workspace (GSW)</strong>, a neuro-inspired generative memory framework that builds structured,
+                interpretable representations of evolving situations, enabling LLMs to reason over evolving roles, actions, and spatio-temporal contexts.
+                Our framework comprises an <strong>Operator</strong>, which maps incoming observations to intermediate semantic structures, and a
+                <strong>Reconciler</strong>, which integrates these into a persistent workspace that enforces temporal, spatial, and logical coherence.
+            </p>
+        </section>
+
+        <section id="architecture">
+            <h3>Framework Overview</h3>
+            <div class="figure">
+                <img src="figures/main.png" alt="GSW Architecture" style="width: 100%; max-width: 900px;">
+                <p class="caption">
+                    <strong>Figure 1:</strong> The GSW framework mirrors hippocampal-neocortical structure. The Operator (inspired by neocortex)
+                    extracts semantic roles, states, and verb phrases. The Reconciler (inspired by hippocampus) integrates these into a coherent
+                    spatio-temporal workspace.
+                </p>
+            </div>
+        </section>
+
+        <section id="results">
+            <h3>Key Results</h3>
+
+            <div class="results-highlight">
+                <div class="metric">
+                    <div class="number">0.850</div>
+                    <div class="label">F1-Score on EpBench</div>
+                </div>
+                <div class="metric">
+                    <div class="number">20%</div>
+                    <div class="label">Improvement in Recall</div>
+                </div>
+                <div class="metric">
+                    <div class="number">51%</div>
+                    <div class="label">Token Reduction</div>
+                </div>
+            </div>
+
+            <p>
+                On the Episodic Memory Benchmark (EpBench), GSW achieves state-of-the-art performance with an F1-score of <strong>0.85</strong>,
+                outperforming strong structured RAG baselines by up to <strong>20% in recall</strong> on the most complex queries (6+ cues).
+                Furthermore, GSW reduces query-time context tokens by <strong>51%</strong> compared to the next most token-efficient baseline.
+            </p>
+
+            <div class="table-container">
+                <table>
+                    <caption><strong>Table 1:</strong> Performance on EpBench (200 chapters) by query complexity</caption>
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>0 Cues</th>
+                            <th>1 Cue</th>
+                            <th>2 Cues</th>
+                            <th>3-5 Cues</th>
+                            <th>6+ Cues</th>
+                            <th>Overall</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>GSW (Ours)</strong></td>
+                            <td><strong>0.978</strong></td>
+                            <td>0.745</td>
+                            <td><strong>0.806</strong></td>
+                            <td><strong>0.867</strong></td>
+                            <td><strong>0.834</strong></td>
+                            <td><strong>0.850</strong></td>
+                        </tr>
+                        <tr>
+                            <td>HippoRAG2</td>
+                            <td>0.828</td>
+                            <td>0.675</td>
+                            <td><strong>0.762</strong></td>
+                            <td>0.755</td>
+                            <td>0.746</td>
+                            <td>0.753</td>
+                        </tr>
+                        <tr>
+                            <td>Embedding RAG</td>
+                            <td>0.906</td>
+                            <td>0.727</td>
+                            <td>0.724</td>
+                            <td>0.744</td>
+                            <td>0.678</td>
+                            <td>0.770</td>
+                        </tr>
+                        <tr>
+                            <td>GraphRAG</td>
+                            <td>0.950</td>
+                            <td>0.625</td>
+                            <td>0.624</td>
+                            <td>0.658</td>
+                            <td>0.607</td>
+                            <td>0.714</td>
+                        </tr>
+                        <tr>
+                            <td>Vanilla LLM</td>
+                            <td>0.883</td>
+                            <td>0.709</td>
+                            <td>0.582</td>
+                            <td>0.484</td>
+                            <td>0.323</td>
+                            <td>0.642</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="how-it-works">
+            <h3>How It Works</h3>
+
+            <div class="figure">
+                <img src="figures/overview3.png" alt="GSW QA Pipeline" style="width: 100%; max-width: 900px;">
+                <p class="caption">
+                    <strong>Figure 2:</strong> End-to-end episodic memory creation and question answering. Documents are processed by the Operator
+                    to generate local semantic structures, which the Reconciler integrates into a unified global memory. During QA, relevant portions
+                    are retrieved, reconstructed into episodic summaries, and passed to an LLM.
+                </p>
+            </div>
+
+            <h4>The Operator: Local Semantic Extraction</h4>
+            <p>
+                The Operator processes text chunks and extracts structured semantic elements:
+            </p>
+            <ul>
+                <li><strong>Actors & Entities:</strong> People, places, objects, temporal markers</li>
+                <li><strong>Roles:</strong> Situation-relevant descriptors (e.g., "Suspect", "Law Enforcement Officer")</li>
+                <li><strong>States:</strong> Conditions that characterize actors (e.g., "apprehended", "released on bail")</li>
+                <li><strong>Verb Phrases & Valences:</strong> Actions and their semantic arguments (who, what, where, when, why, how)</li>
+                <li><strong>Spatio-Temporal Links:</strong> Shared locations and times that couple entities</li>
+                <li><strong>Forward-Falling Questions:</strong> Predictive queries about future developments</li>
+            </ul>
+
+            <h4>The Reconciler: Global Integration</h4>
+            <p>
+                The Reconciler integrates local operator outputs into a coherent global workspace:
+            </p>
+            <ul>
+                <li><strong>Entity Disambiguation:</strong> Merges references to the same entity across chunks</li>
+                <li><strong>State Evolution Tracking:</strong> Maintains temporal history of role and state changes</li>
+                <li><strong>Spatio-Temporal Coherence:</strong> Enforces consistency in location and time information</li>
+                <li><strong>Question Resolution:</strong> Answers forward-falling questions as new information arrives</li>
+            </ul>
+        </section>
+
+        <section id="efficiency">
+            <h3>Token Efficiency</h3>
+            <div class="table-container">
+                <table>
+                    <caption><strong>Table 2:</strong> Average context tokens per query on EpBench</caption>
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Avg. Tokens</th>
+                            <th>Avg. Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>GSW (Ours)</strong></td>
+                            <td><strong>~3,587</strong></td>
+                            <td><strong>~$0.0090</strong></td>
+                        </tr>
+                        <tr>
+                            <td>GraphRAG</td>
+                            <td>~7,340</td>
+                            <td>~$0.0184</td>
+                        </tr>
+                        <tr>
+                            <td>Embedding RAG</td>
+                            <td>~8,771</td>
+                            <td>~$0.0219</td>
+                        </tr>
+                        <tr>
+                            <td>HippoRAG</td>
+                            <td>~8,771</td>
+                            <td>~$0.0219</td>
+                        </tr>
+                        <tr>
+                            <td>Vanilla LLM</td>
+                            <td>~101,120</td>
+                            <td>~$0.2528</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="bibtex">
+            <h3>Citation</h3>
+            <pre><code>@inproceedings{gsw2026,
+  title={Generative Semantic Workspaces: Structured Episodic Memory for Next-Gen RAG},
+  author={Anonymous},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  year={2026}
+}</code></pre>
+        </section>
+
+        <footer>
+            <p>Built with ❤️ for episodic memory research</p>
+        </footer>
+    </article>
+</body>
+</html>

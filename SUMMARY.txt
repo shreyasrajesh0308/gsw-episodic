@@ -1,0 +1,82 @@
+================================================================================
+GSW PROJECT WEBSITE - COMPLETE ✓
+================================================================================
+
+WHAT WAS CREATED
+----------------
+✓ Professional academic website for your AAAI 2026 paper
+✓ Minimal, clean design inspired by distill.pub
+✓ All key results, tables, and figures included
+✓ Fully responsive (works on desktop, tablet, mobile)
+✓ Ready for GitHub Pages deployment
+
+FILES CREATED
+-------------
+1. index.html          - Main website (11KB)
+2. style.css           - Styling (4.5KB)
+3. README.md           - Project documentation
+4. DEPLOYMENT.md       - Step-by-step deployment guide
+5. QUICKSTART.md       - Quick reference
+6. .gitignore          - Git ignore rules
+
+FIGURES INCLUDED
+----------------
+✓ main.png            - Main architecture diagram
+✓ overview3.png       - QA pipeline overview  
+✓ motivation.png      - Motivation figure
+✓ operatorv1/v2.png   - Operator diagrams
++ All PDF figures from paper
+
+KEY FEATURES
+------------
+✓ Abstract and motivation
+✓ Framework overview with diagrams
+✓ Results highlight boxes (F1: 0.850, 20% recall↑, 51% tokens↓)
+✓ Performance table by query complexity
+✓ Token efficiency comparison
+✓ "How It Works" section (Operator + Reconciler)
+✓ BibTeX citation
+
+NEXT STEPS TO DEPLOY
+--------------------
+1. Create GitHub repository "gsw-episodic" (public)
+
+2. Push code:
+   cd /home/shreyas/NLP/SM/gensemworkspaces/gsw-episodic
+   git init
+   git add .
+   git commit -m "Initial commit: GSW project website"
+   git branch -M main
+   git remote add origin https://github.com/YOUR_USERNAME/gsw-episodic.git
+   git push -u origin main
+
+3. Enable GitHub Pages:
+   - Repo Settings → Pages
+   - Source: Branch main, Folder / (root)
+   - Save
+   
+4. Access at: https://YOUR_USERNAME.github.io/gsw-episodic/
+
+BEFORE GOING LIVE
+-----------------
+Update in index.html:
+□ ArXiv link (when paper published)
+□ Replace "Anonymous" with authors (when de-anonymized)
+□ Add code repository link (when releasing code)
+
+NOTES
+-----
+• Website is self-contained and static (no build process needed)
+• Code in gsw-memory/ stays private (not included in website)
+• Website only contains AAAI 2026 paper content
+• Can update anytime by pushing to GitHub
+
+DOCUMENTATION
+-------------
+• QUICKSTART.md  - Quick reference (recommended first read)
+• DEPLOYMENT.md  - Detailed deployment instructions
+• README.md      - Project overview
+
+================================================================================
+All set! Check QUICKSTART.md for deployment instructions.
+================================================================================
