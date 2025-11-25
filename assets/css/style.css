@@ -266,6 +266,11 @@ li {
     box-shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
 
+.figure-wide img {
+    width: 100%;
+    max-width: 100%;
+}
+
 .caption {
     margin-top: 1.25rem;
     font-size: 0.95rem;
