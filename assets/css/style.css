@@ -80,8 +80,31 @@ h1 {
 
 .venue p {
     font-size: 1rem;
-    color: var(--accent-color);
+    color: var(--text-color);
     font-weight: 600;
+    margin: 0.5rem 0;
+}
+
+.oral {
+    display: inline-block;
+    background: #dc2626;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-left: 0.5rem;
+}
+
+.spotlight {
+    display: inline-block;
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-left: 0.5rem;
 }
 
 /* Links */
