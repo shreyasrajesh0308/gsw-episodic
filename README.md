@@ -2,6 +2,7 @@
 
 **Project Website for AAAI 2026 Paper**
 
+For the code please refer to: https://github.com/roychowdhuryresearch/gsw-memory
 ## Structured Episodic Memory for Next-Gen RAG
 
 This is the official project website for our AAAI 2026 paper on Generative Semantic Workspaces (GSW), a neuro-inspired framework that builds structured, interpretable representations of evolving situations for episodic memory in Large Language Models.
